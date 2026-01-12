@@ -22,7 +22,9 @@ export async function fetchAPI<T>(
   return res.json();
 }
 
-export function getImageUrl(path: string) {
-  if (path.startsWith("http")) return path; // artinya url nya sudah valid
+export function getImageUrl(path?: string | null) {
+  if (!path) return "/images/placeholder.svg";
+  if (path.startsWith("http")) return path;
   return `${process.env.NEXT_PUBLIC_API_ROOT}/${path}`;
 }
+
